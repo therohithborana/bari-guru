@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BariGuru - Get Your Assignment Written</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">BariGuru</div>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('main')">Home</a>
+                <a href="#" onclick="showSection('writers')">Find Writers</a>
+                <a href="#" onclick="showSection('apply')">Apply as Writer</a>
+                <a href="#" onclick="showSection('faq')">FAQ</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="main" class="section">
+            <div class="hero">
+                <h1>Welcome to BariGuru</h1>
+                <p class="tagline">We suggest you to write your own assignment, but if that's not the case we got you ;)</p>
+            </div>
+            <div class="steps-container">
+                <h2 class="steps-title">How It Works</h2>
+                <div class="steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Find Your Writer</h3>
+                            <p>Browse through our verified writers and find someone from your college who matches your requirements</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Contact Writer</h3>
+                            <p>Reach out to the writer directly through email to discuss your assignment details</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Get It Written</h3>
+                            <p>Work with the writer to get your assignment completed within your deadline</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="options">
+                <div class="option-card" onclick="showSection('writers')">
+                    <h2>Get Your Assignment Written</h2>
+                    <p>Find qualified writers from your college</p>
+                </div>
+                <div class="option-card" onclick="showSection('apply')">
+                    <h2>Apply as a Writer</h2>
+                    <p>Help others and earn money</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rest of the sections remain unchanged -->
+       <section id="writers" class="section hidden">
+            <h2>Find Writers</h2>
+            <div class="filters">
+                <select id="collegeFilter" class="filter-select">
+                    <option value="">All Colleges</option>
+                </select>
+                <select id="branchFilter" class="filter-select">
+                    <option value="">All Branches</option>
+                </select>
+                <button onclick="filterWriters()">Filter</button>
+            </div>
+            <div id="writersList" class="writers-grid"></div>
+        </section>
+
+        <!-- <section id="apply" class="section hidden">
+            <h2>Apply as a Writer</h2>
+            <form id="writerApplicationForm" class="application-form">
+                <div class="form-group">
+                    <input type="text" id="firstName" required placeholder="First Name">
+                    <input type="text" id="lastName" required placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="collegeName" required placeholder="College Name">
+                    <input type="text" id="branch" required placeholder="Branch">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required placeholder="Email Address">
+                    <input type="number" id="ratePerTenPages" required placeholder="Rate per 10 pages">
+                </div>
+                <div class="form-group">
+                    <label for="studentId">Student ID Card (for verification)</label>
+                    <input type="file" id="studentId" required accept="image/*">
+                </div>
+                <button type="submit">Submit Application</button>
+            </form>
+        </section> -->
+
+
+<section id="apply" class="section hidden">
+    <h2>Apply as a Writer</h2>
+    <form id="writerApplicationForm" class="application-form">
+        <div class="form-group">
+            <input type="text" id="firstName" required placeholder="First Name">
+            <input type="text" id="lastName" required placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <input type="text" id="collegeName" required placeholder="College Name">
+            <input type="text" id="branch" required placeholder="Branch">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="Email Address">
+            <small class="email-note">
+                This email will be used for users to contact you. We suggest providing a spare email, not your primary one.
+            </small>
+        </div>
+        <div class="form-group">
+            <input type="number" id="ratePerTenPages" required placeholder="Rate per 10 pages">
+        </div>
+        <div class="form-group">
+            <label for="studentId">Student ID Card (for verification)</label>
+            <input type="file" id="studentId" required accept="image/*">
+            <small class="id-note">
+                This is for verification purposes only. We do not store any private data.
+            </small>
+        </div>
+        <button type="submit">Submit Application</button>
+    </form>
+</section>
+
+
+
+
+      
+
+        <section id="faq" class="section hidden">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>How does BariGuru work?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>BariGuru connects you with verified student writers from various colleges. Simply browse through our writer profiles, choose a writer based on their college and expertise, and contact them directly to discuss your assignment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>How are writers verified?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All writers must submit their student ID cards for verification. We manually verify each application to ensure the authenticity of our writers.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>What are the payment terms?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Writers set their own rates per 10 pages. Payment terms should be discussed and agreed upon directly with the writer before starting the assignment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>How do I become a writer?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To become a writer, click on "Apply as Writer", fill out the application form, and submit your student ID for verification. We'll review your application and get back to you within 48 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="terms" class="section hidden">
+            <h2>Terms and Conditions</h2>
+            <div class="terms-content">
+                <h3>1. Acceptance of Terms</h3>
+                <p>By accessing and using BariGuru, you agree to be bound by these Terms and Conditions.</p>
+
+                <h3>2. User Responsibilities</h3>
+                <p>Users must:</p>
+                <ul>
+                    <li>Provide accurate information during registration</li>
+                    <!-- <li>Maintain the confidentiality of their account</li> -->
+                    <li>Use the platform ethically and legally</li>
+                </ul>
+
+                <h3>3. Writer Verification</h3>
+                <p>Writers must:</p>
+                <ul>
+                    <li>Submit valid student ID for verification</li>
+                    <li>Provide accurate information about their qualifications</li>
+                    <!-- <li>Maintain professional conduct</li> -->
+                </ul>
+
+                <h3>4. Payment Terms</h3>
+                <p>All payment arrangements are made directly between users and writers. BariGuru is not responsible for any payment disputes.</p>
+
+                <!-- <h3>5. Content Guidelines</h3>
+                <p>All content must be:</p>
+                <ul>
+                    <li>Original and plagiarism-free</li>
+                    <li>Delivered within agreed timeframes</li>
+                    <li>Used for reference purposes only</li>
+                </ul> -->
+
+                <!-- <h3>6. Privacy Policy</h3>
+                <p>We protect your personal information as outlined in our Privacy Policy.</p> -->
+
+                <h3>5. Disclaimer</h3>
+                <p>BariGuru is a platform connecting students with writers. We are not responsible for the quality of work delivered by writers.</p>
+            </div>
+        </section>
+    </main>
+
+   
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BariGuru</h3>
+                    <p>Your Trusted Platform for Academic Excellence</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contact.bariguru@gmail.com</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="showSection('main')">Home</a>
+                    <a href="#" onclick="showSection('writers')">Find Writers</a>
+                    <a href="#" onclick="showSection('apply')">Apply as Writer</a>
+                    <a href="#" onclick="showSection('faq')">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#" onclick="showSection('terms')">Terms & Conditions</a>
+                    <!-- <a href="#" onclick="showSection('privacy')">Privacy Policy</a> -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BariGuru. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
