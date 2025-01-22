@@ -74,6 +74,43 @@ Best regards,
     return gmailUrl;
 }
 
+
+
+
+
+
+
+
+
+function createEmailTemplate(writer) {
+    const subject = `Assignment Writing Request - ${writer.college_name}`;
+    const body = `Dear ${writer.first_name} ${writer.last_name},
+
+I found your profile on BariGuru and I'm interested in having you write an assignment for me. 
+
+Assignment Details:
+- Subject: [Please specify]
+- Number of pages: [Please specify]
+- Deadline: [Please specify]
+- Additional requirements: [Please specify]
+
+Looking forward to your response.
+
+Best regards,
+[Your name]`;
+
+    // Create mailto URL
+    const mailtoUrl = `mailto:${encodeURIComponent(writer.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    return mailtoUrl;
+}
+
+
+
+
+
+
+
 // Load writers
 async function loadWriters(college = '', branch = '') {
     const writersList = document.getElementById('writersList');
