@@ -11,7 +11,11 @@
 <body>
     <header>
         <nav>
-            <div class="logo">BariGuru</div>
+            <!-- <div class="logo">BariGuru</div> -->
+            <a href="#" class="logo" onclick="showSection('main')">BariGuru</a> 
+            <button class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="nav-links">
                 <a href="#" onclick="showSection('main')">Home</a>
                 <a href="#" onclick="showSection('writers')">Find Writers</a>
@@ -230,7 +234,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>BariGuru</h3>
-                    <p>Your Trusted Platform for Academic Excellence</p>
+                    <!-- <p></p> -->
                     <div class="contact-info">
                         <p><i class="fas fa-envelope"></i> contact.bariguru@gmail.com</p>
                     </div>
@@ -253,6 +257,37 @@
             </div>
         </footer>
     </main>
+
+
+    <script>
+        // Add this to your existing JavaScript
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger i');
+            
+            navLinks.classList.toggle('active');
+            
+            // Change hamburger icon
+            if (navLinks.classList.contains('active')) {
+                hamburger.classList.remove('fa-bars');
+                hamburger.classList.add('fa-times');
+            } else {
+                hamburger.classList.remove('fa-times');
+                hamburger.classList.add('fa-bars');
+            }
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger i');
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('fa-times');
+                hamburger.classList.add('fa-bars');
+            });
+        });
+    </script>
 
     <script src="app.js"></script>
 </body>
