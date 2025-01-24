@@ -1,3 +1,4 @@
+//public/app.js
 // Show/hide sections
 function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(section => {

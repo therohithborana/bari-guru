@@ -496,6 +496,7 @@ nav {
         display: block;
         background-color: transparent; /* Transparent background */
         margin-top: -5px; /* Moves the hamburger button up slightly */
+        margin-left: auto; /* Flexbox way to move it to the extreme right */
     }
     .nav-links {
         display: none;
@@ -726,4 +727,144 @@ nav {
     color: #2c3e50;
     font-size: 1.1em;
     margin-top: 0.5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Subtle Fade-In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover Scale Animation */
+@keyframes hoverScale {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Smooth Gradient Background */
+header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+/* Card Elevation Effect */
+.section, .writer-card, .option-card, .step-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.05), 
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.section:hover, .writer-card:hover, .option-card:hover, .step-card:hover {
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.08), 
+        0 4px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-5px);
+}
+
+/* Interactive Elements */
+.nav-links a, .option-card, .contact-button, button {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links a::before, .option-card::before, .contact-button::before, button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #3498db;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::before, .option-card:hover::before, .contact-button:hover::before, button:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Subtle Button Animations */
+button, .contact-button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+button::after, .contact-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+button:hover::after, .contact-button:hover::after {
+    opacity: 1;
+}
+
+/* Enhanced Form Elements */
+.form-group input {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box, 
+                linear-gradient(135deg, #3498db, #2980b9) border-box;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        animation: fadeIn 0.5s ease;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+    }
+}
+
+/* Touch Optimization */
+@media (hover: none) {
+    .nav-links a:hover::before, 
+    .option-card:hover::before, 
+    .contact-button:hover::before, 
+    button:hover::before {
+        transform: scaleX(0);
+    }
 }
