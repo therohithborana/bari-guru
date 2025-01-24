@@ -20,4 +20,8 @@
         "SUPABASE_URL": "@supabase_url",
         "SUPABASE_ANON_KEY": "@supabase_anon_key"
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e882aea3214e46ad2ded46d057fd6d8bf8bee1fd
